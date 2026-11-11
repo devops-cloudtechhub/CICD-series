@@ -6,9 +6,17 @@ on:
 jobs:
   plan:
     runs-on: [self-hosted, amazonlinux, dev]  # Matches labels of self-hosted runner
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::287870619366:role/oidc-ec2
+          aws-region: us-east-1
       - name: setup terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -36,6 +44,11 @@ jobs:
       steps:
         - name: checkout
           uses: actions/checkout@v4
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            role-to-assume: arn:aws:iam::287870619366:role/oidc-ec2
+            aws-region: us-east-1
             
         - name: setup terraform
           uses: hashicorp/setup-terraform@v3
