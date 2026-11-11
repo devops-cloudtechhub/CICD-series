@@ -40,6 +40,9 @@ jobs:
       runs-on: [self-hosted, amazonlinux, dev] 
       needs: plan
       environment: production
+      permissions:
+        id-token: write
+        contents: read
 
       steps:
         - name: checkout
