@@ -37,7 +37,7 @@ jobs:
           
   apply:          
       name: terraform apply
-      runs-on: ubuntu-latest
+      runs-on: [self-hosted, amazonlinux, dev] 
       needs: plan
       environment: production
 
