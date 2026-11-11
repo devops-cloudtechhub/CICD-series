@@ -13,6 +13,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.9.8
+          terraform_wrapper: false
           
       - name: terraform init
         run: terraform init
